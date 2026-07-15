@@ -32,6 +32,9 @@ export class AddPageMuhi extends BasePage {
     async clickaddbtn(){
         await this.click(this.addbtn)
     }
+    async checkadded(){
+        
+    }
 
 
 }
