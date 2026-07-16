@@ -6,6 +6,7 @@ export class glitchworld extends World {
     browser!: Browser
     context!: BrowserContext
     page!: Page
+
 }
 
 setWorldConstructor(glitchworld)

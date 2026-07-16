@@ -1,3 +1,4 @@
+import { EditPage } from './../page/editPage';
 import { Before, After, BeforeAll, AfterAll, Status, setDefaultTimeout } from '@cucumber/cucumber';
 import { Browser, chromium } from "@playwright/test";
 import { glitchworld } from '../world/customworld'
@@ -18,6 +19,7 @@ Before(async function (this: glitchworld, scenario) {
     this.browser = browser;
     this.context = await browser.newContext({ acceptDownloads: true });
     this.page = await this.context.newPage();
+
 
 });
 After(async function (this: glitchworld, scenario) {
