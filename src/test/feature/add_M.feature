@@ -1,3 +1,4 @@
+@Muhindhar
 Feature: Muhindhar_15-07-2026_Adding the trainee training records in the site
 
 Feature Description:
@@ -14,8 +15,8 @@ Feature Description:
 
         Examples:
                   | type               |
-                  | valid01            |
-                  | valid02            |
+                  | valid1             |
+                  | valid2             |
                   | empty_empid        |
                   | end_before_start   |
                   | invalid_percentage |
