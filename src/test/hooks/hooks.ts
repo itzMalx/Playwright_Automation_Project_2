@@ -12,7 +12,7 @@ let browser: Browser;
 
 BeforeAll(async () => {
 
-    browser = await chromium.launch({ headless: true });
+    browser = await chromium.launch({ headless: false });
     logger.info("Browser Launched");
 });
 Before(async function (this: glitchworld, scenario) {
@@ -20,8 +20,8 @@ Before(async function (this: glitchworld, scenario) {
     this.browser = browser;
     this.context = await this.browser.newContext({ acceptDownloads: true });
     this.page = await this.context.newPage();
-    this.addpage = await new AddPageMuhi(this.page)
-    this.recordPage = new RecordsPage(this.page)
+    this.addpage =  new AddPageMuhi(this.page)
+    this.recordPage =  new RecordsPage(this.page)
 
 });
 After(async function (this: glitchworld, scenario) {
