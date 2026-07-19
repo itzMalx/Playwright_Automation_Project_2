@@ -3,6 +3,7 @@ import { Browser, chromium } from "@playwright/test";
 import { glitchworld } from '../world/customworld'
 import { logger } from '../../utilities/logger'
 import { RecordsPage } from '../page/RecordsPage';
+import { AddPageMuhi } from '../page/addmPage';
 
 setDefaultTimeout(90 * 1000)
 
@@ -19,7 +20,7 @@ Before(async function (this: glitchworld, scenario) {
     this.browser = browser;
     this.context = await browser.newContext({ acceptDownloads: true });
     this.page = await this.context.newPage();
-
+    this.addpage = await new AddPageMuhi(this.page)
     this.recordPage = new RecordsPage(this.page)
 
 });

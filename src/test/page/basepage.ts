@@ -1,5 +1,6 @@
 import { Locator,Page } from "@playwright/test";
 import { logger } from "../../utilities/logger";
+import { EnvReader } from '../../utilities/envreader'
 export class BasePage{
     readonly page:Page;
 
@@ -25,4 +26,8 @@ export class BasePage{
         throw error;
     }
   }
+
+  async goto() {
+        await this.page.goto(EnvReader.getBaseUrl());
+    }
 }
