@@ -1,8 +1,8 @@
-@Search
-Feature: Search Employee Training
+@search
+Feature: Myl_15.07.206_Search Employee Training Records
 
   Background:
-     Given user is on the homepage of the site
+    Given user is on the homepage of the site
 
   @Mylambigai
   Scenario Outline: Verify user can search records using different filters
@@ -10,9 +10,9 @@ Feature: Search Employee Training
     Then Only records containing "<Search Value>" should be displayed in "<Column>" column
 
     Examples:
-      | Column         | Search Value |
-      | Project Name   | ABC          |
-      | EMP ID         | 1002         |
-      | Employee Name  | Sriram       |
-      | Course         | AI-DS        |
-      | Trainer Name   | ARUN         |
+      | Column        | Search Value          |
+      | Completed	    | 10                    |
+      | EMP ID        | EMP001                |
+      | Employee Name | Muhindhar S V         |
+      | Course        | Playwright Automation |
+      | Trainer Name  | Raj Kumar             |

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "pretest": "if exist reports rmdir /s /q reports",
-    "test": "cucumber-js --format json:reports/cucumber-report.json --format allure-cucumberjs/reporter",
+    "test": "cucumber-js",
     "posttest": "tsx src/utilities/report.ts",
     "muhindhar": "cucumber-js --tags @Muhindhar --format progress --format json:reports/cucumber-report.json --format allure-cucumberjs/reporter",
     "malavicka": "cucumber-js --tags @Malavicka --format json:reports/cucumber-report.json --format allure-cucumberjs/reporter",
