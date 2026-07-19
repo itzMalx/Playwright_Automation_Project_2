@@ -2,6 +2,7 @@ import { Before, After, BeforeAll, AfterAll, Status, setDefaultTimeout } from '@
 import { Browser, chromium } from "@playwright/test";
 import { glitchworld } from '../world/customworld'
 import { logger } from '../../utilities/logger'
+import { RecordsPage } from '../page/RecordsPage';
 
 setDefaultTimeout(90 * 1000)
 
@@ -18,6 +19,8 @@ Before(async function (this: glitchworld, scenario) {
     this.browser = browser;
     this.context = await browser.newContext({ acceptDownloads: true });
     this.page = await this.context.newPage();
+
+    this.recordPage = new RecordsPage(this.page)
 
 });
 After(async function (this: glitchworld, scenario) {

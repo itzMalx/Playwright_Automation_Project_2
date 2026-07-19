@@ -17,7 +17,7 @@ module.exports = {
     ],
 
     publishQuiet: true,
-    dryRun: true,
+    dryRun: false,
 
     format: [
       "json:reports/cucumber-report.json",
