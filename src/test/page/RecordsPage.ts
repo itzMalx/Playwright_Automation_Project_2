@@ -13,6 +13,8 @@ export class RecordsPage extends BasePage {
     private readonly courseCol = this.page.locator("//td[4]")
     private readonly trainerNameCol = this.page.locator("//td[5]")
     private readonly completedCol = this.page.locator("//td[10]")
+    private readonly startDate=this.page.locator("//input[@id='_r_3u_']")
+    private readonly endDate=this.page.locator("//input[@id='_r_3v_']")
 
 
     public async searchByColumn(column: string, value: string): Promise<void> {
@@ -39,6 +41,14 @@ export class RecordsPage extends BasePage {
 
             case "trainer name":
                 filterBox = this.trainerName;
+                break;
+
+            case "startDate":
+                filterBox=this.startDate;
+                break;
+            
+            case "endDate":
+                filterBox=this.endDate;
                 break;
 
             default:
@@ -74,6 +84,14 @@ public async verifySearchResult(column: string, expectedValue: string): Promise<
 
         case "completed":
             columnLocator = this.completedCol;
+            break;
+        
+        case "startDate":
+            columnLocator = this.startDate;
+            break;
+        
+        case "endDate":
+            columnLocator = this.startDate;
             break;
 
         default:
