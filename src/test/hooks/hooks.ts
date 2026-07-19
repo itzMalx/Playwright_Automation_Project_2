@@ -4,7 +4,7 @@ import { glitchworld } from '../world/customworld'
 import { logger } from '../../utilities/logger'
 import { RecordsPage } from '../page/RecordsPage';
 import { AddPageMuhi } from '../page/addmPage';
-
+import { ExportToExcelPage} from '../page/ExportToExcelPage'
 setDefaultTimeout(90 * 1000)
 
 
@@ -22,6 +22,7 @@ Before(async function (this: glitchworld, scenario) {
     this.page = await this.context.newPage();
     this.addpage =  new AddPageMuhi(this.page)
     this.recordPage =  new RecordsPage(this.page)
+    this.exportPage = new ExportToExcelPage(this.page)
 
 });
 After(async function (this: glitchworld, scenario) {
