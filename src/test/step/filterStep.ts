@@ -1,10 +1,10 @@
 import {Given,When,Then} from '@cucumber/cucumber'
+import { glitchworld } from '../world/customworld';
 
-When('User enters {string} in {string} filter', async function (string, string2) {
-  
+When('User enters {string} in {string} filter', async function (this:glitchworld,Column:string, searchvalue: string) {
+  this.recordPage.searchByColumn(Column,searchvalue)
 });
 
-Then('Only records containing {string} should be displayed in {string} column', async function (string, string2) {
-  // Write code here that turns the phrase above into concrete actions
-  return 'pending';
+Then('Only records containing {string} should be displayed in {string} column', async function (this:glitchworld,Column:string, searchvalue: string) {
+  this.recordPage.verifySearchResult(Column,searchvalue)
 });

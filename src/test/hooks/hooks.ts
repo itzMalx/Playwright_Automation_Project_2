@@ -17,7 +17,7 @@ BeforeAll(async () => {
 Before(async function (this: glitchworld, scenario) {
 
     this.browser = browser;
-    this.context = await browser.newContext({ acceptDownloads: true });
+    this.context = await this.browser.newContext({ acceptDownloads: true });
     this.page = await this.context.newPage();
 
     this.recordPage = new RecordsPage(this.page)

@@ -1,4 +1,4 @@
-@Search
+@search
 Feature: Search Employee Training
 
   Background:
