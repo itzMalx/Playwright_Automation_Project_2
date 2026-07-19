@@ -1,8 +1,10 @@
-import { EditPage } from './../page/editPage';
 import { Before, After, BeforeAll, AfterAll, Status, setDefaultTimeout } from '@cucumber/cucumber';
 import { Browser, chromium } from "@playwright/test";
 import { glitchworld } from '../world/customworld'
 import { logger } from '../../utilities/logger'
+import { RecordsPage } from '../page/RecordsPage';
+import { AddPageMuhi } from '../page/addmPage';
+import { EditPage } from '../page/editPage';
 
 setDefaultTimeout(90 * 1000)
 
@@ -11,14 +13,16 @@ let browser: Browser;
 
 BeforeAll(async () => {
 
-    browser = await chromium.launch({ headless: true });
+    browser = await chromium.launch({ headless: false });
     logger.info("Browser Launched");
 });
 Before(async function (this: glitchworld, scenario) {
 
     this.browser = browser;
-    this.context = await browser.newContext({ acceptDownloads: true });
+    this.context = await this.browser.newContext({ acceptDownloads: true });
     this.page = await this.context.newPage();
+    this.addpage =  new AddPageMuhi(this.page)
+    this.recordPage =  new RecordsPage(this.page)
 
 
 });
