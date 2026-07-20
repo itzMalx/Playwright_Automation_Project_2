@@ -27,6 +27,16 @@ export class BasePage{
     }
   }
 
+   async clear(locator:Locator){
+    try{
+      await locator.clear();
+
+    }
+    catch(error){
+      logger.error(`Failed to clear: ${error}`)
+    }
+   }
+
   async goto() {
         await this.page.goto(EnvReader.getBaseUrl());
     }
