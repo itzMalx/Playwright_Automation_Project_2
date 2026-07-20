@@ -14,6 +14,9 @@ export class RecordsPage extends BasePage {
     private readonly trainerNameCol = this.page.locator("//td[5]")
     private readonly completedCol = this.page.locator("//td[10]")
     private readonly table = this.page.locator("//tbody")
+    private readonly startDate=this.page.locator("//input[@id='_r_3u_']")
+    private readonly endDate=this.page.locator("//input[@id='_r_3v_']")
+    private readonly records=this.page.locator("//*[@id='root']/descendant::tbody")
 
 
     public async searchByColumn(column: string, value: string): Promise<void> {
@@ -41,6 +44,14 @@ export class RecordsPage extends BasePage {
 
             case "trainer name":
                 filterBox = this.trainerName;
+                break;
+
+            case "startDate":
+                filterBox=this.startDate;
+                break;
+            
+            case "endDate":
+                filterBox=this.endDate;
                 break;
 
             default:
@@ -78,6 +89,18 @@ public async verifySearchResult(column: string, expectedValue: string): Promise<
             columnLocator = this.trainerNameCol;
             break;
 
+        case "completed":
+            columnLocator = this.completedCol;
+            break;
+        
+        case "startDate":
+            columnLocator = this.startDate;
+            break;
+        
+        case "endDate":
+            columnLocator = this.startDate;
+            break;
+
         default:
             throw new Error(`Invalid column: ${column}`);
     }
@@ -90,4 +113,8 @@ public async verifySearchResult(column: string, expectedValue: string): Promise<
         await expect(actualValue).toContain(expectedValue);
     }
 }
+
+    async isNoRecordsDisplayed(){
+        return await this.isVisible(this.records)
+    }
 }
