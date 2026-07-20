@@ -18,6 +18,16 @@ export class BasePage{
     }
   }
 
+  async isVisible(locator: Locator) {
+    try {
+      return await locator.isVisible()
+    }
+    catch (error) {
+      logger.error(`Failed to check visibility`);
+      throw error;
+    }
+  }
+
   async fill(locator:Locator,value:string){
     try {
         await locator.fill(value)
@@ -26,6 +36,16 @@ export class BasePage{
         throw error;
     }
   }
+
+   async clear(locator:Locator){
+    try{
+      await locator.clear();
+
+    }
+    catch(error){
+      logger.error(`Failed to clear: ${error}`)
+    }
+   }
 
   async goto() {
         await this.page.goto(EnvReader.getBaseUrl());
