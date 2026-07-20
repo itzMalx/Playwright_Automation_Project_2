@@ -15,6 +15,7 @@ export class RecordsPage extends BasePage {
     private readonly completedCol = this.page.locator("//td[10]")
     private readonly startDate=this.page.locator("//input[@id='_r_3u_']")
     private readonly endDate=this.page.locator("//input[@id='_r_3v_']")
+    private readonly records=this.page.locator("//*[@id='root']/descendant::tbody")
 
 
     public async searchByColumn(column: string, value: string): Promise<void> {
@@ -106,4 +107,8 @@ public async verifySearchResult(column: string, expectedValue: string): Promise<
         expect(actualValue).toContain(expectedValue);
     }
 }
+
+    async isNoRecordsDisplayed(){
+        return await this.isVisible(this.records)
+    }
 }

@@ -28,3 +28,14 @@ Feature: Search Employee Training
         | Date Type | Date |
         | Start Date | 30-07-2026 |
         | End Date | 15-07-2026 |
+
+  @NoDataOnNonExistingDates
+  Scenario Outline: Verify no records are displayed when the user selects a date with no matching records
+
+    When the user selects "<Date>" in the "<Date Type>" filter
+    Then no records should be displayed
+
+    Examples:
+        | Date Type | Date |
+        | Start Date | 01-01-2035 |
+        | End Date | 31-12-2035 |
