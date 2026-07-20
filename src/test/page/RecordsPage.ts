@@ -13,6 +13,7 @@ export class RecordsPage extends BasePage {
     private readonly courseCol = this.page.locator("//td[4]")
     private readonly trainerNameCol = this.page.locator("//td[5]")
     private readonly completedCol = this.page.locator("//td[10]")
+    private readonly table = this.page.locator("//tbody")
     private readonly startDate=this.page.locator("//input[@id='_r_3u_']")
     private readonly endDate=this.page.locator("//input[@id='_r_3v_']")
     private readonly records=this.page.locator("//*[@id='root']/descendant::tbody")
@@ -20,11 +21,12 @@ export class RecordsPage extends BasePage {
 
     public async searchByColumn(column: string, value: string): Promise<void> {
 
+        await this.table.waitFor({state:"visible"})
         let filterBox: Locator;
 
         switch (column.toLowerCase()) {
 
-            case "project name":
+            case "completed":
                 filterBox = this.completed;
                 break;
 
@@ -67,11 +69,15 @@ public async verifySearchResult(column: string, expectedValue: string): Promise<
 
     switch (column.toLowerCase()) {
 
-        case "empID":
+        case "completed":
+            columnLocator = this.completedCol;
+            break;
+
+        case "emp id":
             columnLocator = this.empIDCol;
             break;
 
-        case "employeeName":
+        case "employee name":
             columnLocator = this.empNameCol;
             break;
 
@@ -79,7 +85,7 @@ public async verifySearchResult(column: string, expectedValue: string): Promise<
             columnLocator = this.courseCol;
             break;
 
-        case "trainerName":
+        case "trainer name":
             columnLocator = this.trainerNameCol;
             break;
 
@@ -104,7 +110,7 @@ public async verifySearchResult(column: string, expectedValue: string): Promise<
 
     for (let i = 0; i < rowCount; i++) {
         const actualValue = (await columnLocator.nth(i).textContent())?.trim();
-        expect(actualValue).toContain(expectedValue);
+        await expect(actualValue).toContain(expectedValue);
     }
 }
 

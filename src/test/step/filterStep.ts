@@ -1,21 +1,17 @@
-import { Given, When, Then } from "@cucumber/cucumber";
-import { glitchworld } from "../world/customworld";
+import { expect } from '@playwright/test';
 
-When("User enters {string} in {string} filter",async function (this: glitchworld,searchValue: string,column: string) {
-  
-    }
-);
+import {Given,When,Then} from '@cucumber/cucumber'
+import { glitchworld } from '../world/customworld';
 
-Then("Only records containing {string} should be displayed in {string} column",async function (this: glitchworld,expectedValue: string,column: string) {
-    }
-);
+When('User enters {string} in {string} filter', async function (this:glitchworld,searchValue: string, column: string) {
+  //await this.recordPage.searchByColumn(Column,searchvalue)
+  await this.recordPage.searchByColumn(column, searchValue);
+});
 
-When("the user selects {string} in the {string} filter",async function (this: glitchworld,date: string,dateType: string) {
+Then('Only records containing {string} should be displayed in {string} column', async function (this:glitchworld,searchValue: string, column: string) {
+  await this.recordPage.verifySearchResult(column,searchValue)
+});
 
-    }
-);
-
-Then("only records containing {string} should be displayed in {string} column",async function (this: glitchworld,expectedDate: string,dateType: string) {
-
-    }
-);
+Then('no records should be displayed', async function (this:glitchworld) {
+    await expect(await this.recordPage.isNoRecordsDisplayed()).toBeTruthy()
+});
