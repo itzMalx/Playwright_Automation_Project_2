@@ -14,7 +14,7 @@ let browser: Browser;
 
 BeforeAll(async () => {
 
-    browser = await chromium.launch({ headless: false });
+    browser = await chromium.launch({ headless: true });
     logger.info("Browser Launched");
 });
 Before(async function (this: glitchworld, scenario) {
