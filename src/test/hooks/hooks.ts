@@ -4,6 +4,7 @@ import { glitchworld } from '../world/customworld'
 import { logger } from '../../utilities/logger'
 import { RecordsPage } from '../page/RecordsPage';
 import { AddPageMuhi } from '../page/addmPage';
+import { ExportToExcelPage} from '../page/ExportToExcelPage'
 import { EditPage } from '../page/editPage';
 
 setDefaultTimeout(90 * 1000)
@@ -13,7 +14,7 @@ let browser: Browser;
 
 BeforeAll(async () => {
 
-    browser = await chromium.launch({ headless: false });
+    browser = await chromium.launch({ headless: true });
     logger.info("Browser Launched");
 });
 Before(async function (this: glitchworld, scenario) {
@@ -23,7 +24,8 @@ Before(async function (this: glitchworld, scenario) {
     this.page = await this.context.newPage();
     this.addpage =  new AddPageMuhi(this.page)
     this.recordPage =  new RecordsPage(this.page)
-
+    this.exportPage = new ExportToExcelPage(this.page)
+    this.editPage= new EditPage(this.page);
 
 });
 After(async function (this: glitchworld, scenario) {
