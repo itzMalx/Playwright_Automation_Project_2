@@ -5,6 +5,7 @@ import { AddPageMuhi } from '../page/addmPage';
 import { ExportToExcelPage} from '../page/ExportToExcelPage'
 
 import { EditPage } from '../page/editPage';
+import { DeletePage } from '../page/deletePage';
 export class glitchworld extends World {
 
     browser!: Browser
@@ -15,6 +16,7 @@ export class glitchworld extends World {
     recordPage!: RecordsPage
     exportPage!: ExportToExcelPage;
     editPage!:EditPage
+    deletepage!:DeletePage
 }
 
 setWorldConstructor(glitchworld)
