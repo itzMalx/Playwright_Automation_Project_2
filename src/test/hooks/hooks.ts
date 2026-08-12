@@ -10,7 +10,6 @@ import { DeletePage } from '../page/deletePage';
 
 setDefaultTimeout(90 * 1000)
 
-
 let browser: Browser;
 
 BeforeAll(async () => {
