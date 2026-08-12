@@ -6,6 +6,7 @@ import { RecordsPage } from '../page/RecordsPage';
 import { AddPageMuhi } from '../page/addmPage';
 import { ExportToExcelPage} from '../page/ExportToExcelPage'
 import { EditPage } from '../page/editPage';
+import { DeletePage } from '../page/deletePage';
 
 setDefaultTimeout(90 * 1000)
 
@@ -26,6 +27,7 @@ Before(async function (this: glitchworld, scenario) {
     this.recordPage =  new RecordsPage(this.page)
     this.exportPage = new ExportToExcelPage(this.page)
     this.editPage= new EditPage(this.page);
+    this.deletepage = new DeletePage(this.page)
 
 });
 After(async function (this: glitchworld, scenario) {

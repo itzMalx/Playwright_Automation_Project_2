@@ -50,4 +50,8 @@ export class BasePage{
   async goto() {
         await this.page.goto(EnvReader.getBaseUrl());
     }
+
+    async refresh(){
+      await this.page.reload();
+    }
 }

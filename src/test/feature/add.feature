@@ -19,4 +19,4 @@ Feature Description:
                   | valid2             |
                   | empty_empid        |
                   | end_before_start   |
-                  | invalid_percentage |w
+                  | invalid_percentage |
