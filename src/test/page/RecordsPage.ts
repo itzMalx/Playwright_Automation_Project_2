@@ -14,9 +14,11 @@ export class RecordsPage extends BasePage {
     private readonly trainerNameCol = this.page.locator("//td[5]")
     private readonly completedCol = this.page.locator("//td[10]")
     private readonly table = this.page.locator("//tbody")
-    private readonly startDate=this.page.locator("//input[@id='_r_3u_']")
-    private readonly endDate=this.page.locator("//input[@id='_r_3v_']")
+    private readonly startDate=this.page.locator("input[type='date']").first();
+    private readonly endDate=this.page.locator("input[type='date']").nth(1);
     private readonly records=this.page.locator("//*[@id='root']/descendant::tbody")
+    private readonly startDateData=this.page.locator("//tbody/tr/td[7]")
+    private readonly endDateData=this.page.locator("//tbody/tr/td[8]")
 
 
     public async searchByColumn(column: string, value: string): Promise<void> {
@@ -46,11 +48,11 @@ export class RecordsPage extends BasePage {
                 filterBox = this.trainerName;
                 break;
 
-            case "startDate":
+            case "start date":
                 filterBox=this.startDate;
                 break;
             
-            case "endDate":
+            case "end date":
                 filterBox=this.endDate;
                 break;
 
@@ -93,12 +95,12 @@ public async verifySearchResult(column: string, expectedValue: string): Promise<
             columnLocator = this.completedCol;
             break;
         
-        case "startDate":
-            columnLocator = this.startDate;
+        case "start date":
+            columnLocator = this.startDateData;
             break;
         
-        case "endDate":
-            columnLocator = this.startDate;
+        case "end date":
+            columnLocator = this.endDateData;
             break;
 
         default:
@@ -114,7 +116,7 @@ public async verifySearchResult(column: string, expectedValue: string): Promise<
     }
 }
 
-    async isNoRecordsDisplayed(){
+    async isRecordsDisplayed(){
         return await this.isVisible(this.records)
     }
 }

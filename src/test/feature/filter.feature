@@ -27,8 +27,8 @@ Feature: Myl_15.07.206_Search Employee Training Records
 
     Examples:
         | Date Type | Date |
-        | Start Date | 30-07-2026 |
-        | End Date | 15-07-2026 |
+        | Start Date | 2026-07-15 |
+        | End Date | 2026-07-15 |
 
   @Test
   @NoDataOnNonExistingDates
@@ -39,6 +39,6 @@ Feature: Myl_15.07.206_Search Employee Training Records
 
     Examples:
         | Date Type | Date |
-        | Start Date | 01-01-2035 |
-        | End Date | 31-12-2035 |
+        | Start Date | 2035-01-01 |
+        | End Date | 2035-12-31 |
 
