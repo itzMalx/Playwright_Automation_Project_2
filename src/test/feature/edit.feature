@@ -1,5 +1,5 @@
 @Shobana
-Feature: Shobana_15-07-2026_Edit the trainee training records in the site
+Feature: Shobana_15-07-2026,12-08-2026(updated)_Edit the trainee training records in the site
 
 
 Feature Description:
@@ -15,3 +15,12 @@ Scenario: Edit trainee training details successfully
     And User updates the trainee training details
     And User clicks the Update button
     Then Training record should be updated successfully
+
+    Scenario Outline: Attempt to edit an unavailable trainee record
+
+    When User tries to edit the trainee with employee ID "<empId>"
+    Then Edit option should not be available for employee ID "<empId>"
+
+Examples:
+    | empId  |
+    | EMP999 |

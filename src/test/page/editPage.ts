@@ -23,5 +23,14 @@ export class EditPage extends BasePage {
     async clickUpdateButton() {
         await this.click(this.updateButton);
     }
+    async isEditOptionAvailable(empId: string): Promise<boolean> {
 
+    const traineeRow = this.page
+        .locator("tr")
+        .filter({ hasText: empId });
+
+    return await traineeRow
+        .locator("button[aria-label='edit']")
+        .count() > 0;
+}
 }
