@@ -111,7 +111,12 @@ public async verifySearchResult(column: string, expectedValue: string): Promise<
     expect(rowCount).toBeGreaterThan(0);
 
     for (let i = 0; i < rowCount; i++) {
-        const actualValue = (await columnLocator.nth(i).textContent())?.trim();
+        let actualValue = (await columnLocator.nth(i).textContent())?.trim();
+
+        if ((column.toLowerCase()==="start date"||column.toLowerCase()==="end date")&&actualValue) {
+            const [dd, mm, yyyy]=actualValue.split("/");
+            actualValue=`${yyyy}-${mm}-${dd}`;
+        }
         await expect(actualValue).toContain(expectedValue);
     }
 }
