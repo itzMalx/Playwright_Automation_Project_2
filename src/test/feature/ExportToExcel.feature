@@ -11,3 +11,4 @@ Feature: Export Data to Excel
   Scenario: Export records to Excel successfully
     When the user clicks the Export to Excel button
     Then the Excel file should be downloaded successfully
+    And the downloaded Excel file should contain trainee records
