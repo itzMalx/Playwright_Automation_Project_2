@@ -13,22 +13,21 @@ setDefaultTimeout(90 * 1000)
 let browser: Browser;
 
 BeforeAll(async () => {
-
     browser = await chromium.launch({ headless: true });
     logger.info("Browser Launched");
 });
-Before(async function (this: glitchworld, scenario) {
 
+Before(async function (this: glitchworld, scenario) {
     this.browser = browser;
     this.context = await this.browser.newContext({ acceptDownloads: true });
     this.page = await this.context.newPage();
     this.addpage =  new AddPageMuhi(this.page)
     this.recordPage =  new RecordsPage(this.page)
     this.exportPage = new ExportToExcelPage(this.page)
-    this.editPage= new EditPage(this.page);
+    this.editPage = new EditPage(this.page);
     this.deletepage = new DeletePage(this.page)
-
 });
+
 After(async function (this: glitchworld, scenario) {
     if (scenario.result?.status === Status.FAILED) {
         if (this.page && !this.page.isClosed()) {
