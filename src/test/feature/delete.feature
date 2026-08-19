@@ -13,7 +13,6 @@ Feature:  Muhindhar_12-08-2026(updated)_Delete a trainee training record
                   | empId  |
                   | EMP001 |
 
-
         Scenario Outline: Attempt to delete an unavailable trainee record
             Given user is on the homepage of the employee training records
              When user tries to delete the trainee with employee ID "<empId>"
