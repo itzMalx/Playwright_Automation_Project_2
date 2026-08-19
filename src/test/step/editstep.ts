@@ -54,3 +54,14 @@ Then(
 
     }
 );
+
+Then(
+    "Training record should be available for editing",
+    async function (this: glitchworld) {
+
+        await expect(
+            this.page.locator('//input[@name="course"]')
+        ).toBeVisible();
+
+    }
+);
