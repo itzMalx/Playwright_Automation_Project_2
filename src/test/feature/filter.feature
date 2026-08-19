@@ -19,7 +19,7 @@ Feature: Myl_15.07.206_Search Employee Training Records
       | Course        | Playwright Automation |
       | Trainer Name  | Raj Kumar             |
 
-  @Test
+  @Vetri
   @DateFilter
   Scenario Outline: Verify the user can filter records using date filters
 
@@ -31,7 +31,7 @@ Feature: Myl_15.07.206_Search Employee Training Records
       | Start Date | 2026-07-15 |
       | End Date   | 2026-07-15 |
 
-  @Test
+  @Vetri
   @NoDataOnNonExistingDates
   Scenario Outline: Verify no records are displayed when the user selects a date with no matching records
 

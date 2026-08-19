@@ -126,6 +126,7 @@ export class RecordsPage extends BasePage {
     }
 
     public async verifyNoSearchResult() {
-    await expect(this.dataRows).toHaveCount(0);
-}
+        await expect(this.dataRows).toHaveCount(0);
+    }
+
 }
