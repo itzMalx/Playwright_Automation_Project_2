@@ -16,7 +16,7 @@ setDefaultTimeout(90 * 1000)
 let browser: Browser;
 
 BeforeAll(async () => {
-    browser = await chromium.launch({ headless: true });
+    browser = await chromium.launch({ headless: false });
     logger.info("Browser Launched");
 });
 
