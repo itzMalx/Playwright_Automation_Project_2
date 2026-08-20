@@ -1,6 +1,7 @@
 import { BasePage } from "./basepage";
 import { expect } from "@playwright/test";
 export class AddPageMuhi extends BasePage {
+    
     private readonly addtrainee = this.page.getByRole('button', {name: 'Add Training'});
     private readonly projectname = this.page.getByRole('combobox', {name: /Project Name/i});
     private readonly empid = this.page.getByRole('textbox', {name: /EMP ID/i});
