@@ -1,10 +1,11 @@
-@search
+@Filter
 Feature: Myl_15.07.206_Search Employee Training Records
 
   Background:
     Given user is on the homepage of the site
 
   @Mylambigai
+  @ValidFilter
   Scenario Outline: Verify user can search records using different filters
     When User enters "<Search Value>" in "<Column>" filter
     Then Only records containing "<Search Value>" should be displayed in "<Column>" column
@@ -12,7 +13,7 @@ Feature: Myl_15.07.206_Search Employee Training Records
     Examples:
 
       | Column        | Search Value          |
-      | Completed	    | 10                    |
+      | Completed     | 10                    |
       | EMP ID        | EMP001                |
       | Employee Name | Muhindhar S V         |
       | Course        | Playwright Automation |
@@ -26,9 +27,9 @@ Feature: Myl_15.07.206_Search Employee Training Records
     Then Only records containing "<Date>" should be displayed in "<Date Type>" column
 
     Examples:
-        | Date Type | Date |
-        | Start Date | 30-07-2026 |
-        | End Date | 15-07-2026 |
+      | Date Type  | Date       |
+      | Start Date | 2026-07-15 |
+      | End Date   | 2026-07-15 |
 
   @Test
   @NoDataOnNonExistingDates
@@ -38,7 +39,21 @@ Feature: Myl_15.07.206_Search Employee Training Records
     Then no records should be displayed
 
     Examples:
-        | Date Type | Date |
-        | Start Date | 01-01-2035 |
-        | End Date | 31-12-2035 |
+      | Date Type  | Date       |
+      | Start Date | 2035-01-01 |
+      | End Date   | 2035-12-31 |
+
+  @Mylambigai
+  @InvalidFilter
+  Scenario Outline: Verify user cannot find records using non-existing filter data
+    When User enters "<Search Value>" in "<Column>" filter
+    Then no records should be displayed in the table
+
+    Examples:
+      | Column        | Search Value |
+      | Completed     | 0.0          |
+      | EMP ID        | !@#$         |
+      | Employee Name | Rana@        |
+      | Course        | NoCourse     |
+      | Trainer Name  | TrainerName  |
 

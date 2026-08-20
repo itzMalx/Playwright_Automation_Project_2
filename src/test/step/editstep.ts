@@ -29,3 +29,39 @@ Then("Training record should be updated successfully", async function (this: gli
     await expect(this.page.getByText(editData.course)).toBeVisible();
 
 });
+
+
+When(
+    "User tries to edit the trainee with employee ID {string}",
+    async function (this: glitchworld, empId: string) {
+
+        const editAvailable =
+            await this.editPage.isEditOptionAvailable(empId);
+
+        expect(editAvailable).toBe(false);
+
+    }
+);
+
+Then(
+    "Edit option should not be available for employee ID {string}",
+    async function (this: glitchworld, empId: string) {
+
+        const editAvailable =
+            await this.editPage.isEditOptionAvailable(empId);
+
+        expect(editAvailable).toBe(false);
+
+    }
+);
+
+Then(
+    "Training record should be available for editing",
+    async function (this: glitchworld) {
+
+        await expect(
+            this.page.locator('//input[@name="course"]')
+        ).toBeVisible();
+
+    }
+);

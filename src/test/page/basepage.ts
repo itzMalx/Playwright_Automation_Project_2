@@ -31,7 +31,8 @@ export class BasePage{
   async fill(locator:Locator,value:string){
     try {
         await locator.fill(value)
-    } catch (error) {
+    }
+    catch (error) {
         logger.error(`Failed to fill the value: ${error}`)
         throw error;
     }
@@ -49,5 +50,9 @@ export class BasePage{
 
   async goto() {
         await this.page.goto(EnvReader.getBaseUrl());
+    }
+
+    async refresh(){
+      await this.page.reload();
     }
 }

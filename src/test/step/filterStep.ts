@@ -13,5 +13,9 @@ Then('Only records containing {string} should be displayed in {string} column', 
 });
 
 Then('no records should be displayed', async function (this:glitchworld) {
-    await expect(await this.recordPage.isNoRecordsDisplayed()).toBeTruthy()
+    await expect(await this.recordPage.isRecordsDisplayed()).toBeFalsy()
+});
+
+Then('no records should be displayed in the table', async function () {
+  await this.recordPage.verifyNoSearchResult();
 });

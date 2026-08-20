@@ -14,14 +14,16 @@ export class RecordsPage extends BasePage {
     private readonly trainerNameCol = this.page.locator("//td[5]")
     private readonly completedCol = this.page.locator("//td[10]")
     private readonly table = this.page.locator("//tbody")
-    private readonly startDate=this.page.locator("//input[@id='_r_3u_']")
-    private readonly endDate=this.page.locator("//input[@id='_r_3v_']")
-    private readonly records=this.page.locator("//*[@id='root']/descendant::tbody")
-
+    private readonly startDate = this.page.locator("input[type='date']").first();
+    private readonly endDate = this.page.locator("input[type='date']").nth(1);
+    private readonly records = this.page.locator("//*[@id='root']/descendant::tbody")
+    private readonly startDateData = this.page.locator("//tbody/tr/td[7]")
+    private readonly endDateData = this.page.locator("//tbody/tr/td[8]")
+    private readonly dataRows = this.records.locator("tr");
 
     public async searchByColumn(column: string, value: string): Promise<void> {
 
-        await this.table.waitFor({state:"visible"})
+        await this.table.waitFor({ state: "visible" })
         let filterBox: Locator;
 
         switch (column.toLowerCase()) {
@@ -46,12 +48,12 @@ export class RecordsPage extends BasePage {
                 filterBox = this.trainerName;
                 break;
 
-            case "startDate":
-                filterBox=this.startDate;
+            case "start date":
+                filterBox = this.startDate;
                 break;
-            
-            case "endDate":
-                filterBox=this.endDate;
+
+            case "end date":
+                filterBox = this.endDate;
                 break;
 
             default:
@@ -61,60 +63,69 @@ export class RecordsPage extends BasePage {
         await filterBox.fill(value);
     }
 
-    
 
-public async verifySearchResult(column: string, expectedValue: string): Promise<void> {
 
-    let columnLocator: Locator;
+    public async verifySearchResult(column: string, expectedValue: string): Promise<void> {
 
-    switch (column.toLowerCase()) {
+        let columnLocator: Locator;
 
-        case "completed":
-            columnLocator = this.completedCol;
-            break;
+        switch (column.toLowerCase()) {
 
-        case "emp id":
-            columnLocator = this.empIDCol;
-            break;
+            case "completed":
+                columnLocator = this.completedCol;
+                break;
 
-        case "employee name":
-            columnLocator = this.empNameCol;
-            break;
+            case "emp id":
+                columnLocator = this.empIDCol;
+                break;
 
-        case "course":
-            columnLocator = this.courseCol;
-            break;
+            case "employee name":
+                columnLocator = this.empNameCol;
+                break;
 
-        case "trainer name":
-            columnLocator = this.trainerNameCol;
-            break;
+            case "course":
+                columnLocator = this.courseCol;
+                break;
 
-        case "completed":
-            columnLocator = this.completedCol;
-            break;
-        
-        case "startDate":
-            columnLocator = this.startDate;
-            break;
-        
-        case "endDate":
-            columnLocator = this.startDate;
-            break;
+            case "trainer name":
+                columnLocator = this.trainerNameCol;
+                break;
 
-        default:
-            throw new Error(`Invalid column: ${column}`);
+            case "completed":
+                columnLocator = this.completedCol;
+                break;
+
+            case "start date":
+                columnLocator = this.startDateData;
+                break;
+
+            case "end date":
+                columnLocator = this.endDateData;
+                break;
+
+            default:
+                throw new Error(`Invalid column: ${column}`);
+        }
+
+        const rowCount = await columnLocator.count();
+        expect(rowCount).toBeGreaterThan(0);
+
+        for (let i = 0; i < rowCount; i++) {
+            let actualValue = (await columnLocator.nth(i).textContent())?.trim();
+
+            if ((column.toLowerCase() === "start date" || column.toLowerCase() === "end date") && actualValue) {
+                const [dd, mm, yyyy] = actualValue.split("/");
+                actualValue = `${yyyy}-${mm}-${dd}`;
+            }
+            await expect(actualValue).toContain(expectedValue);
+        }
     }
 
-    const rowCount = await columnLocator.count();
-    expect(rowCount).toBeGreaterThan(0);
-
-    for (let i = 0; i < rowCount; i++) {
-        const actualValue = (await columnLocator.nth(i).textContent())?.trim();
-        await expect(actualValue).toContain(expectedValue);
-    }
-}
-
-    async isNoRecordsDisplayed(){
+    async isRecordsDisplayed() {
         return await this.isVisible(this.records)
     }
+
+    public async verifyNoSearchResult() {
+    await expect(this.dataRows).toHaveCount(0);
+}
 }

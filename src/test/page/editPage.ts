@@ -4,8 +4,8 @@ export class EditPage extends BasePage {
 
     private readonly editIcon = this.page.locator("//tr[td[contains(normalize-space(),'Muhindhar S V')]]//button[@aria-label='edit']");
 
-    private readonly course = this.page.locator("//input[@id='_r_3k_']");
-    private readonly trainername = this.page.locator("//input[@id='_r_3l_']");
+    private readonly course = this.page.locator('//input[@name="course"]');
+    private readonly trainername = this.page.locator('//input[@name="trainerName"]');
     private readonly updateButton = this.page.getByRole('button', { name: 'UPDATE' });
 
     async clickEditIcon() {
@@ -23,5 +23,14 @@ export class EditPage extends BasePage {
     async clickUpdateButton() {
         await this.click(this.updateButton);
     }
+    async isEditOptionAvailable(empId: string): Promise<boolean> {
 
+    const traineeRow = this.page
+        .locator("tr")
+        .filter({ hasText: empId });
+
+    return await traineeRow
+        .locator("button[aria-label='edit']")
+        .count() > 0;
+}
 }
