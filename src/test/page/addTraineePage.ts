@@ -11,14 +11,21 @@ export class AddTraineePage extends BasePage {
     private readonly trainerName=this.page.locator('input[name="trainerName"]');
     private readonly startDate=this.page.locator('input[name="startDate"]');
     private readonly endDate=this.page.locator('input[name="endDate"]');
-    private readonly completedStatus=this.page.locator('input[name="percentageCompleted"]');
-    private readonly errorMessage = this.page.locator(
+    private readonly completedStatus=this.page.locator('input[name="percentCompleted"]');
+    private readonly genericErrorMessage = this.page.locator(
         "[role='alert'], .Mui-error, p.MuiFormHelperText-root.Mui-error"
     );
 
-    async selectDropdown(fieldName: string, value: string) {
-        await this.page.locator(`input[name="${fieldName}"]`).click();
+    private toIsoDate(ddmmyyyy: string): string {
+        const [dd, mm, yyyy] = ddmmyyyy.split('-');
+        return `${yyyy}-${mm}-${dd}`;
+    }
 
+    async selectDropdown(fieldName: string, value: string) {
+        const hiddenInput = this.page.locator(`input[name="${fieldName}"]`);
+        const combobox = hiddenInput.locator('xpath=..').locator('[role="combobox"]');
+
+        await combobox.click();
         await this.page.getByRole('option', { name: value, exact: true }).click();
     }
 
@@ -34,8 +41,8 @@ export class AddTraineePage extends BasePage {
 
         await this.selectDropdown("trainingType", trainingType);
 
-        await this.fill(this.startDate, startDate);
-        await this.fill(this.endDate, endDate);
+        await this.fill(this.startDate, this.toIsoDate(startDate));
+        await this.fill(this.endDate, this.toIsoDate(endDate));
 
         await this.selectDropdown("status", status);
 
@@ -57,10 +64,22 @@ export class AddTraineePage extends BasePage {
     }
 
     async verifyErrorMessageDisplayed() {
-        await expect(this.errorMessage.first()).toBeVisible({ timeout: 5000 });
+        const ariaInvalid = await this.empId.getAttribute('aria-invalid').catch(() => null);
+        if (ariaInvalid === 'true') {
+            return;
+        }
+
+        const validationMessage = await this.empId
+            .evaluate((el: HTMLInputElement) => el.validationMessage)
+            .catch(() => '');
+        if (validationMessage && validationMessage.trim().length > 0) {
+            return;
+        }
+
+        await expect(this.genericErrorMessage.first()).toBeVisible({ timeout: 5000 });
     }
 
     async isErrorMessageVisible(): Promise<boolean> {
-        return await this.errorMessage.first().isVisible().catch(() => false);
+        return await this.genericErrorMessage.first().isVisible().catch(() => false);
     }
 }

@@ -8,7 +8,7 @@ Feature: Adding trainee training records
   Scenario Outline: Verify adding valid employee training data is working
     When user enters the training data "<projectName>", "<empId>", "<employeeName>", "<course>", "<trainerName>", "<trainingType>", "<startDate>", "<endDate>", "<status>", "<percentageCompleted>"
     And user clicks on the add button
-    Then user should be able to see the record created in the list
+    Then user should be able to see the trainee record created in the list
 
     Examples:
       | projectName | empId  | employeeName | course             | trainerName | trainingType | startDate  | endDate    | status      | percentageCompleted |

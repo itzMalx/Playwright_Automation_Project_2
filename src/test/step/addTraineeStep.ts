@@ -30,6 +30,10 @@ When('user enters the training data {string}, {string}, {string}, {string}, {str
   }
 );
 
+Then('user should be able to see the trainee record created in the list', async function (this: glitchworld) {
+  await this.addTraineePage.verifyRecordCreated(this.lastEmpId);
+});
+
 Then('user should not be able to see the record created in the list',async function (this: glitchworld) {
   await this.addTraineePage.verifyRecordNotCreated(lastEmployeeName, lastCourse);
 });
