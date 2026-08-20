@@ -9,7 +9,7 @@ import { HomePage } from '../page/homePage';
 import { EditPage } from '../page/editPage';
 import { DeletePage } from '../page/deletePage';
 import { ExportExcel } from '../page/ExportExcelPage';
-
+import { FilterTrainee } from '../page/FilterTrainee';
 export class glitchworld extends World {
 
     browser!: Browser
@@ -25,6 +25,7 @@ export class glitchworld extends World {
     deletepage!:DeletePage
     exportexcel!:ExportExcel
     lastEmpId!: string
+    filterTrainee!: FilterTrainee;
 }
 
 setWorldConstructor(glitchworld)
