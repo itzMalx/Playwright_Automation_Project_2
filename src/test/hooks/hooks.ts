@@ -9,6 +9,7 @@ import { EditPage } from '../page/editPage';
 import { DeletePage } from '../page/deletePage';
 import { HomePage } from '../page/homePage';
 import { AddTraineePage } from '../page/addTraineePage';
+import { ExportExcel } from '../page/ExportExcelPage';
 
 setDefaultTimeout(90 * 1000)
 
@@ -30,6 +31,7 @@ Before(async function (this: glitchworld, scenario) {
     this.deletepage = new DeletePage(this.page)
     this.homePage = new HomePage(this.page)
     this.addTraineePage = new AddTraineePage(this.page)
+    this.exportexcel = new ExportExcel(this.page)
 });
 
 After(async function (this: glitchworld, scenario) {
