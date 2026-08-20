@@ -8,6 +8,7 @@ import { HomePage } from '../page/homePage';
 
 import { EditPage } from '../page/editPage';
 import { DeletePage } from '../page/deletePage';
+import { ExportExcel } from '../page/ExportExcelPage';
 
 export class glitchworld extends World {
 
@@ -22,7 +23,7 @@ export class glitchworld extends World {
     exportPage!: ExportToExcelPage;
     editPage!:EditPage
     deletepage!:DeletePage
-
+    exportexcel!:ExportExcel
     lastEmpId!: string
 }
 
