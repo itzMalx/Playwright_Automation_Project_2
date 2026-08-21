@@ -24,3 +24,6 @@ screenshots/
 downloads/
 allure-report/
 allure-results/
+
+#rerun
+@rerun.txt
