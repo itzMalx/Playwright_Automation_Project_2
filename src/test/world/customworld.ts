@@ -6,6 +6,7 @@ import { ExportToExcelPage} from '../page/ExportToExcelPage'
 
 import { EditPage } from '../page/editPage';
 import { DeletePage } from '../page/deletePage';
+import {EditTrainingPage} from '../page/edit2page';
 export class glitchworld extends World {
 
     browser!: Browser
@@ -17,6 +18,7 @@ export class glitchworld extends World {
     exportPage!: ExportToExcelPage;
     editPage!:EditPage
     deletepage!:DeletePage
+    edit2page!:EditTrainingPage
 }
 
 setWorldConstructor(glitchworld)
