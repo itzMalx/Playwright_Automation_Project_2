@@ -7,10 +7,7 @@ import { AddPageMuhi } from '../page/addmPage';
 import { ExportToExcelPage} from '../page/ExportToExcelPage'
 import { EditPage } from '../page/editPage';
 import { DeletePage } from '../page/deletePage';
-import { HomePage } from '../page/homePage';
-import { AddTraineePage } from '../page/addTraineePage';
-import { ExportExcel } from '../page/ExportExcelPage';
-import { FilterTraineePage } from '../page/filtertTaineePage';
+
 setDefaultTimeout(90 * 1000)
 
 let browser: Browser;
@@ -29,10 +26,6 @@ Before(async function (this: glitchworld, scenario) {
     this.exportPage = new ExportToExcelPage(this.page)
     this.editPage = new EditPage(this.page);
     this.deletepage = new DeletePage(this.page)
-    this.homePage = new HomePage(this.page)
-    this.addTraineePage = new AddTraineePage(this.page)
-    this.exportexcel = new ExportExcel(this.page)
-    this.filterTrainee = new FilterTraineePage(this.page);
 });
 
 After(async function (this: glitchworld, scenario) {
