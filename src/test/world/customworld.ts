@@ -8,6 +8,7 @@ import { HomePage } from '../page/homePage';
 
 import { EditPage } from '../page/editPage';
 import { DeletePage } from '../page/deletePage';
+import {EditTrainingPage} from '../page/edit2page';
 import { ExportExcel } from '../page/ExportExcelPage';
 import { FilterTrainee } from '../page/FilterTrainee';
 export class glitchworld extends World {
@@ -23,6 +24,7 @@ export class glitchworld extends World {
     exportPage!: ExportToExcelPage;
     editPage!:EditPage
     deletepage!:DeletePage
+    edit2page!:EditTrainingPage
     exportexcel!:ExportExcel
     lastEmpId!: string
     filterTrainee!: FilterTrainee;
