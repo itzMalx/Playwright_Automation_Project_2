@@ -7,7 +7,6 @@ import { AddPageMuhi } from '../page/addmPage';
 import { ExportToExcelPage} from '../page/ExportToExcelPage'
 import { EditPage } from '../page/editPage';
 import { DeletePage } from '../page/deletePage';
-import {CourseraFilterPage} from '../page/filter2page';
 
 setDefaultTimeout(90 * 1000)
 

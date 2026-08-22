@@ -55,4 +55,5 @@ export class BasePage{
     async refresh(){
       await this.page.reload();
     }
+    
 }
